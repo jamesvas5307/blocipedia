@@ -1,0 +1,18 @@
+@import "variables";
+
+.button{
+  background: $button-gradient;
+  color: white;
+  width:130px;
+  height: 40px;
+  text-decoration: none;
+  border-radius: 5%;
+  margin-top: 20px;
+
+  &.success{
+    background: $green-gradient;
+    color: black;
+    box-shadow: none;
+    text-transform: uppercase;
+  }
+}
