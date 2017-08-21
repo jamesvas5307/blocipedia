@@ -3,6 +3,9 @@ source 'https://rubygems.org'
  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
  gem 'rails', '4.2.5'
  gem 'devise'
+ gem 'pundit'
+ gem 'faker'
+ gem 'stripe'
 
  group :production do
    gem 'pg'

@@ -9,7 +9,8 @@
 <body>
 <nav>
       <% if current_user %>
-      Welcome <%= current_user.email  %> !
+      Welcome <%= current_user.email  %> - <%= current_user.role %> member !
+      <%= link_to "Change Membership", new_charge_path %>
       <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
       <% else %>
       <%= link_to "Sign In", new_user_session_path %>

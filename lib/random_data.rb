@@ -9,8 +9,8 @@ module RandomData
 
     def self.random_sentence
       strings = []
-      rand(3..8).times do
-        strings << random_word
+      rand(1..2).times do
+        strings << "#{Faker::GameOfThrones.character} kills #{Faker::GameOfThrones.character} at #{Faker::GameOfThrones.city}."
       end
       sentence = strings.join(" ")
       sentence.capitalize << "."

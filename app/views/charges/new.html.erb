@@ -1,0 +1,10 @@
+<%= form_tag charges_path do %>
+   <h4>Membership for <%= current_user.email %></h4>
+   <p> Change membership to: </p>
+   <% if current_user.role = "standard"  %>
+    Premium?
+  <% else %>
+    Back to Basic?
+   <% end %>
+   <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
+ <% end %>

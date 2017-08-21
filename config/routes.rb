@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users,controllers: { sessions: 'devise/sessions' }
   root to: 'welcome#index'
-
+  resources :charges, only: [:new, :create]
   resources :wikis
 
   # The priority is based upon order of creation: first created -> highest priority.
