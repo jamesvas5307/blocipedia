@@ -26,6 +26,7 @@ class WikisController < ApplicationController
   end
   def update
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
     if @wiki.update_attributes( wiki_params )
       flash[:notice] = "Wiki was updated."
       redirect_to  @wiki
@@ -41,7 +42,7 @@ class WikisController < ApplicationController
 
   def destroy
      @wiki = Wiki.find(params[:id])
-
+     authorize @wiki
      if @wiki.destroy
        flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
        redirect_to wikis_path
