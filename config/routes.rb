@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  resources :users
+  devise_for :users,controllers: { sessions: 'devise/sessions' }
   root to: 'welcome#index'
-
-  resources :sessions, only: [:new, :create, :destroy]
 
   resources :wikis
 
