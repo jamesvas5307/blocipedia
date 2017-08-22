@@ -10,7 +10,7 @@ end
 users = User.all
 
 User.create!(
-email: 'user@example.com',
+email: 'admin@example.com',
 password: 'Password1',
 role: 'admin'
 )
@@ -19,11 +19,17 @@ User.create!(
 email: 'standard@example.com',
 password: 'Password1'
 )
+
+User.create!(
+email: 'premium@example.com',
+password: 'Password1',
+role: 'premium'
+)
 50.times do
   wiki = Wiki.create({
     user: users.sample,
     title: Faker::GameOfThrones.house,
     body: RandomData.random_paragraph,
-    private: false
+    private: [true,false].sample
   })
 end
