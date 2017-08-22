@@ -10,10 +10,10 @@ module RandomData
     def self.random_sentence
       strings = []
       rand(1..2).times do
-        strings << "#{Faker::GameOfThrones.character} kills #{Faker::GameOfThrones.character} at #{Faker::GameOfThrones.city}."
+        strings << "<p><strong>#{Faker::GameOfThrones.character.capitalize}</strong> kills <strong>#{Faker::GameOfThrones.character.capitalize}</strong> at <small>#{Faker::GameOfThrones.city.capitalize}</small>.</p>"
       end
       sentence = strings.join(" ")
-      sentence.capitalize << "."
+      sentence = sentence.capitalize
     end
 
     def self.random_word

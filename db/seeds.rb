@@ -3,7 +3,7 @@ require 'random_data'
 5.times do
   User.create!(
     email: Faker::Internet.email,
-    password: RandomData.random_sentence
+    password: Faker::GameOfThrones.house
   )
 end
 

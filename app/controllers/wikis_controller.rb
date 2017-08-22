@@ -1,4 +1,5 @@
 class WikisController < ApplicationController
+
   def index
     @wikis = Wiki.all
   end
@@ -8,7 +9,7 @@ class WikisController < ApplicationController
   def create
   @wiki = Wiki.new
   @wiki.title = params[:wiki][:title]
-  @wiki.body = params[:wiki][:body]
+  @wiki.body = markdown_content(params[:wiki][:body])
   @wiki.private = params[:wiki][:private]
   @wiki.user = current_user
 
@@ -28,6 +29,8 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     authorize @wiki
     if @wiki.update_attributes( wiki_params )
+      @wiki.title = markdown_content(@wiki.title)
+      @wiki.body = markdown_content(@wiki.body)
       flash[:notice] = "Wiki was updated."
       redirect_to  @wiki
     else
@@ -55,4 +58,10 @@ class WikisController < ApplicationController
     def wiki_params
       params.require(:wiki).permit( :title, :body, :private )
     end
+
+
+  def markdown_content(body)
+     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    markdown.render(body)
+  end
 end
