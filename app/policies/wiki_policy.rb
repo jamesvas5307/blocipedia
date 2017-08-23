@@ -7,11 +7,15 @@ class WikiPolicy < ApplicationPolicy
  end
 
  def update?
-   user.admin? or wiki.user == user
+   user.admin? or user.premium? or is_collaborator?(wiki) or wiki.user == user
  end
 
  def destroy?
    user.admin? or wiki.user == user
+ end
+
+ def is_collaborator?(wiki)
+   wiki.collaborators.where(user_id: user)
  end
 
 end

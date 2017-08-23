@@ -1,6 +1,13 @@
 <h1> <%= @wiki.title %> by <%= @wiki.user.email %> </h1>
-<% if current_user == @wiki.user || current_user.premium? || current_user.admin? %>
+<% if current_user == @wiki.user || current_user.premium? || current_user.admin? || is_collaborator?(@wiki)%>
 <%= link_to "Edit", edit_wiki_path(@wiki) %>
 <%= link_to "Delete Wiki", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this post?'} %>
-<% end %>
 <p> <%= @wiki.body.html_safe %> </p>
+<% if current_user.premium? || current_user.admin?  && @wiki.private?  %>
+  <h3> Collaborators </h3>
+   <%= link_to "New Collaborator", new_wiki_collaborator_path(@wiki) %>
+  <% @wiki.collaborators.each do |c| %>
+  <p><%= c.user.email %><%= link_to "Delete", [@wiki, c], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this collaborator?' } %></p>
+  <% end %>
+<% end %>
+<% end %>

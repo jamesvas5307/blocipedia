@@ -1,7 +1,7 @@
 <h1> Wikis </h1><%= link_to "New Wiki", new_wiki_path %>
 <% @wikis.each do |wiki | %>
 <% if wiki.private %>
-<% if current_user.admin? || current_user.premium? %>
+<% if current_user.admin? || current_user.premium? || is_collaborator?(wiki)%>
 <h3> * Private Post * <%= link_to wiki.title, wiki_path(wiki.id) %> by<small><%= wiki.user.email %></small></h3>
 <hr/>
 <% end %>
