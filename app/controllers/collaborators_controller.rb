@@ -18,7 +18,7 @@ class CollaboratorsController < ApplicationController
       # if no successful alert the user and render the new view again.
       flash.now[:alert] = "There was an error saving the wiki. Please try again"
       render :new
-    end
+  end
   end
 
   def edit
@@ -32,7 +32,7 @@ class CollaboratorsController < ApplicationController
        flash[:notice] = "Deleted successfully."
        redirect_to @wiki
      else
-       flash.now[:alert] = "There was an error deleting the wiki."
+       flash.now[:alert] = "There was an error deleting the user."
        render :show
      end
    end
